@@ -3,95 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Screener Dashboard -- Friday, August 21, 2026 01:09</title>
+<meta name="theme-color" content="#0d0d0d">
+<meta name="color-scheme" content="dark">
+<title>Screener Dashboard -- Friday, August 21, 2026 02:08</title>
 <style>
   :root {
-    --surface: #fcfcfb; --page: #f9f9f7; --primary: #0b0b0b;
-    --secondary: #52514e; --muted: #898781; --grid: #e1e0d9;
-    --border: rgba(11,11,11,0.10);
+    --surface: #1a1a19; --page: #0d0d0d; --primary: #ffffff;
+    --secondary: #c3c2b7; --muted: #898781; --grid: #2c2c2a;
+    --baseline: #383835; --border: rgba(255,255,255,0.10); --accent: #3987e5;
   }
   * { box-sizing: border-box; }
+  html { max-width: 100%; overflow-x: hidden; }
   body {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: var(--page); color: var(--primary); margin: 0; padding: 24px;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    background: var(--page); color: var(--primary); margin: 0;
+    padding: 20px 16px 40px; max-width: 100%; overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
-  .wrap { max-width: 1100px; margin: 0 auto; }
-  header { margin-bottom: 24px; }
-  header h1 { font-size: 22px; margin: 0 0 4px; }
-  header .sub { color: var(--secondary); font-size: 14px; }
-  .disclaimer { color: var(--muted); font-size: 12px; margin-top: 8px; }
-  .tiles { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header { margin-bottom: 20px; }
+  .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .brand-dot {
+    width: 10px; height: 10px; border-radius: 3px; background: var(--accent);
+    flex-shrink: 0;
+  }
+  header h1 {
+    font-size: clamp(19px, 5vw, 23px); margin: 0; font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  header .sub { color: var(--secondary); font-size: 13px; line-height: 1.5; }
+  .nav { font-size: 12.5px; margin-top: 10px; line-height: 1.9; }
+  .nav-label { color: var(--muted); margin-right: 2px; }
+  .nav-link { color: var(--accent); text-decoration: none; }
+  .nav-link:hover { text-decoration: underline; }
+  .nav-current {
+    color: var(--primary); font-weight: 600; background: var(--surface);
+    padding: 1px 7px; border-radius: 5px; border: 1px solid var(--border);
+  }
+  .disclaimer {
+    color: var(--muted); font-size: 11.5px; margin-top: 12px; line-height: 1.5;
+    padding-top: 10px; border-top: 1px solid var(--border);
+  }
+  .tiles {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px; margin: 20px 0;
+  }
   .tile {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 16px 20px; min-width: 160px; flex: 1;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px;
   }
-  .tile-value { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .tile-label { color: var(--secondary); font-size: 13px; margin-top: 2px; }
-  .tile-sub { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  .tile-value {
+    font-size: 24px; font-weight: 650; font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+  .tile-label { color: var(--secondary); font-size: 12px; margin-top: 3px; }
+  .tile-sub { color: var(--muted); font-size: 10.5px; margin-top: 2px; line-height: 1.4; }
   .card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 20px; margin-bottom: 16px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 12px;
   }
-  .card h2 { font-size: 16px; margin: 0 0 10px; }
-  .card h3 { font-size: 13px; color: var(--secondary); margin: 14px 0 8px; font-weight: 600; }
-  .card .sub { color: var(--secondary); font-size: 13px; margin-bottom: 12px; }
-  .source { color: var(--muted); font-size: 11px; margin-bottom: 10px; }
-  .source code { background: var(--page); padding: 1px 4px; border-radius: 3px; }
-  .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; color: var(--secondary); font-weight: 600; padding: 6px 8px;
-       border-bottom: 1px solid var(--grid); }
-  td { padding: 6px 8px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
-  td.detail { font-variant-numeric: normal; color: var(--secondary); }
-  .bar-track { display: flex; height: 10px; border-radius: 5px; overflow: hidden;
-               background: var(--grid); margin-bottom: 8px; }
+  .card h2 {
+    font-size: 15px; margin: 0 0 8px; font-weight: 650; letter-spacing: -0.005em;
+  }
+  .card h3 {
+    font-size: 11.5px; color: var(--secondary); margin: 14px 0 8px; font-weight: 650;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .card .sub { color: var(--secondary); font-size: 12.5px; margin-bottom: 10px; line-height: 1.5; }
+  .source { color: var(--muted); font-size: 10.5px; margin-bottom: 10px; }
+  .source code {
+    background: var(--page); padding: 1px 5px; border-radius: 4px;
+    border: 1px solid var(--border); font-size: 10.5px;
+  }
+  .empty { color: var(--muted); font-size: 12.5px; padding: 6px 0; line-height: 1.5; }
+  /* The actual mobile-alignment fix: every table lives in its own
+     horizontally-scrolling box instead of forcing the whole page wider
+     than the viewport. -webkit-overflow-scrolling for smooth iOS scroll. */
+  .table-scroll {
+    overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -4px;
+    border-radius: 6px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 460px; }
+  th {
+    text-align: left; color: var(--secondary); font-weight: 650; padding: 7px 10px;
+    border-bottom: 1px solid var(--baseline); white-space: nowrap; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  td {
+    padding: 7px 10px; border-bottom: 1px solid var(--grid);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  td.detail { font-variant-numeric: normal; color: var(--secondary); white-space: normal; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .bar-track {
+    display: flex; height: 8px; border-radius: 4px; overflow: hidden;
+    background: var(--grid); margin-bottom: 10px;
+  }
   .bar-seg { height: 100%; }
   .bar-good { background: #0ca30c; }
   .bar-warning { background: #fab219; }
   .bar-critical { background: #d03b3b; }
-  .bar-muted { background: var(--grid); }
-  .legend { font-size: 12px; color: var(--secondary); margin-bottom: 4px; }
-  .legend-item { display: inline-flex; align-items: center; gap: 4px; }
-  .legend-swatch { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+  .bar-muted { background: var(--baseline); }
+  .legend { font-size: 11.5px; color: var(--secondary); margin-bottom: 4px; line-height: 1.9; }
+  .legend-item { display: inline-flex; align-items: center; gap: 5px; margin-right: 4px; }
+  .legend-swatch { width: 8px; height: 8px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
   .legend-good { background: #0ca30c; }
   .legend-warning { background: #fab219; }
   .legend-critical { background: #d03b3b; }
   .legend-muted { background: var(--muted); }
-  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px;
-           padding: 2px 8px; border-radius: 10px; font-weight: 500; }
-  .badge-good { background: rgba(12,163,12,0.12); color: #006300; }
-  .badge-warning { background: rgba(250,178,25,0.18); color: #7a5200; }
-  .badge-critical { background: rgba(208,59,59,0.12); color: #8f1f1f; }
-  .badge-muted { background: var(--page); color: var(--muted); }
-  .badge-icon { font-size: 9px; }
-  .consensus { border: 1px solid #2a78d644; }
-  .consistency { border: 1px solid #1baf7a44; }
-  .nav { font-size: 13px; margin-top: 10px; }
-  .nav-link { color: #2a78d6; text-decoration: none; }
-  .nav-link:hover { text-decoration: underline; }
-  .nav-current { color: var(--primary); font-weight: 600; }
-  footer { color: var(--muted); font-size: 12px; margin-top: 24px; padding-top: 16px;
-           border-top: 1px solid var(--grid); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px; font-size: 11px;
+    padding: 3px 8px; border-radius: 20px; font-weight: 600; white-space: nowrap;
+  }
+  /* Dark-surface-contrast-validated status steps used directly as badge
+     TEXT (good 5.19:1, warning 9.49:1, serious 6.60:1, critical 3.62:1
+     against #1a1a19 per the dataviz skill's own dark-mode numbers) --
+     not the light-mode text tints (#006300 etc.) the badges used before,
+     which would read as nearly invisible dark-on-dark here. */
+  .badge-good { background: rgba(12,163,12,0.16); color: #0ca30c; }
+  .badge-warning { background: rgba(250,178,25,0.16); color: #fab219; }
+  .badge-critical { background: rgba(208,59,59,0.18); color: #ff8080; }
+  .badge-muted { background: var(--page); color: var(--muted); border: 1px solid var(--border); }
+  .badge-icon { font-size: 8px; }
+  .consensus { border-color: #3987e555; }
+  .consistency { border-color: #199e7055; }
+  footer {
+    color: var(--muted); font-size: 11.5px; margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid var(--border); line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    body { padding: 14px 10px 32px; }
+    .card { padding: 12px; border-radius: 8px; }
+    .tiles { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .tile { padding: 12px; }
+    .tile-value { font-size: 20px; }
+    table { min-width: 420px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>Screener Dashboard</h1>
-    <div class="sub">Generated Friday, August 21, 2026 01:09 &middot; aggregated from the latest output on disk for each tool</div>
-    <div class="nav">History: <!-- NAV_START --><span class="nav-current">Fri Aug 21</span><!-- NAV_END --></div>
+    <div class="brand"><span class="brand-dot"></span><h1>Screener Dashboard</h1></div>
+    <div class="sub">Generated Friday, August 21, 2026 02:08 &middot; aggregated from the latest output on disk for each tool</div>
+    <div class="nav"><span class="nav-label">History:</span> <!-- NAV_START --><span class="nav-current">Fri Aug 21</span><!-- NAV_END --></div>
     <div class="disclaimer">Decision-support only, not investment advice. Every number here comes
     from this project's own disclosed, verified screeners -- see each tool's .md doc for exact
     methodology and data limitations. Not financial advice.</div>
   </header>
   <div class="tiles">
     <div class="tile">
-      <div class="tile-value">8/8</div>
+      <div class="tile-value">9/9</div>
       <div class="tile-label">Tools with data</div>
       
     </div>
     <div class="tile">
-      <div class="tile-value">1,321</div>
+      <div class="tile-value">1,824</div>
       <div class="tile-label">Total rows aggregated</div>
       
     </div>
@@ -120,7 +187,7 @@
   
     <section class="card">
       <h2>Trade Signals (composite)</h2>
-      <div class="source">Source: <code>trade_signals.csv</code> &middot; 2026-08-20 23:52</div><div class="bar-track"><div class="bar-seg bar-critical" style="width:60.80%" title="AVOID / NO EDGE: 304"></div><div class="bar-seg bar-critical" style="width:13.60%" title="EXIT/SELL: 68"></div><div class="bar-seg bar-good" style="width:9.00%" title="BUY: 45"></div><div class="bar-seg bar-warning" style="width:8.60%" title="WATCH: 43"></div><div class="bar-seg bar-warning" style="width:4.20%" title="TRIM (extended, don&#x27;t chase): 21"></div><div class="bar-seg bar-good" style="width:3.80%" title="STRONG BUY: 19"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-critical"></span>AVOID / NO EDGE (304)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-critical"></span>EXIT/SELL (68)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>BUY (45)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>WATCH (43)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>TRIM (extended, don&#x27;t chase) (21)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>STRONG BUY (19)</span></div><h3>Top-tier rows (64 of 500)</h3><table><thead><tr><th>symbol</th><th>price</th><th>trade_signal</th><th>buy_zone</th><th>stop</th><th>target_2R</th></tr></thead><tbody><tr><td>GRMN</td><td>293.09</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>290.91-301.14</td><td>266.41</td><td>370.6</td></tr><tr><td>JNJ</td><td>267.37</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>260.45-269.61</td><td>249.29</td><td>310.25</td></tr><tr><td>WAB</td><td>292.31</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>290.47-300.68</td><td>276.35</td><td>349.34</td></tr><tr><td>UNP</td><td>303.97</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>294.22-304.57</td><td>281.51</td><td>350.69</td></tr><tr><td>MRK</td><td>148.99</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>133.91-138.62</td><td>126.01</td><td>163.84</td></tr><tr><td>IEX</td><td>233.75</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>232.34-240.51</td><td>222.53</td><td>276.47</td></tr><tr><td>BIIB</td><td>214.35</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>207.86-215.18</td><td>200.3</td><td>244.94</td></tr><tr><td>FAST</td><td>50.66</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>49.78-51.53</td><td>47.23</td><td>60.13</td></tr><tr><td>NVDA</td><td>216.85</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>214.45-221.99</td><td>206.14</td><td>253.69</td></tr><tr><td>NDSN</td><td>334.7</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>306.01-316.77</td><td>293.0</td><td>364.31</td></tr><tr><td>BBY</td><td>85.73</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>84.64-87.62</td><td>79.52</td><td>103.82</td></tr><tr><td>WST</td><td>353.77</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>347.29-359.5</td><td>334.92</td><td>408.66</td></tr><tr><td>FDX</td><td>326.04</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>321.27-332.57</td><td>312.24</td><td>373.23</td></tr><tr><td>DLTR</td><td>128.45</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>127.63-132.12</td><td>120.65</td><td>155.06</td></tr><tr><td>TECH</td><td>72.28</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>71.43-73.94</td><td>66.75</td><td>88.32</td></tr></tbody></table>
+      <div class="source">Source: <code>trade_signals.csv</code> &middot; 2026-08-20 23:52</div><div class="bar-track"><div class="bar-seg bar-critical" style="width:60.80%" title="AVOID / NO EDGE: 304"></div><div class="bar-seg bar-critical" style="width:13.60%" title="EXIT/SELL: 68"></div><div class="bar-seg bar-good" style="width:9.00%" title="BUY: 45"></div><div class="bar-seg bar-warning" style="width:8.60%" title="WATCH: 43"></div><div class="bar-seg bar-warning" style="width:4.20%" title="TRIM (extended, don&#x27;t chase): 21"></div><div class="bar-seg bar-good" style="width:3.80%" title="STRONG BUY: 19"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-critical"></span>AVOID / NO EDGE (304)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-critical"></span>EXIT/SELL (68)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>BUY (45)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>WATCH (43)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>TRIM (extended, don&#x27;t chase) (21)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>STRONG BUY (19)</span></div><h3>Top-tier rows (64 of 500)</h3><div class="table-scroll"><table><thead><tr><th>symbol</th><th>price</th><th>trade_signal</th><th>buy_zone</th><th>stop</th><th>target_2R</th></tr></thead><tbody><tr><td>GRMN</td><td>293.09</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>290.91-301.14</td><td>266.41</td><td>370.6</td></tr><tr><td>JNJ</td><td>267.37</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>260.45-269.61</td><td>249.29</td><td>310.25</td></tr><tr><td>WAB</td><td>292.31</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>290.47-300.68</td><td>276.35</td><td>349.34</td></tr><tr><td>UNP</td><td>303.97</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>294.22-304.57</td><td>281.51</td><td>350.69</td></tr><tr><td>MRK</td><td>148.99</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>133.91-138.62</td><td>126.01</td><td>163.84</td></tr><tr><td>IEX</td><td>233.75</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>232.34-240.51</td><td>222.53</td><td>276.47</td></tr><tr><td>BIIB</td><td>214.35</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>207.86-215.18</td><td>200.3</td><td>244.94</td></tr><tr><td>FAST</td><td>50.66</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>49.78-51.53</td><td>47.23</td><td>60.13</td></tr><tr><td>NVDA</td><td>216.85</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>214.45-221.99</td><td>206.14</td><td>253.69</td></tr><tr><td>NDSN</td><td>334.7</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>306.01-316.77</td><td>293.0</td><td>364.31</td></tr><tr><td>BBY</td><td>85.73</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>84.64-87.62</td><td>79.52</td><td>103.82</td></tr><tr><td>WST</td><td>353.77</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>347.29-359.5</td><td>334.92</td><td>408.66</td></tr><tr><td>FDX</td><td>326.04</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>321.27-332.57</td><td>312.24</td><td>373.23</td></tr><tr><td>DLTR</td><td>128.45</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>127.63-132.12</td><td>120.65</td><td>155.06</td></tr><tr><td>TECH</td><td>72.28</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> STRONG BUY</span></td><td>71.43-73.94</td><td>66.75</td><td>88.32</td></tr></tbody></table></div>
     </section>
     <section class="card">
       <h2>Minervini SEPA</h2>
@@ -132,7 +199,7 @@
     </section>
     <section class="card">
       <h2>Navellier Growth</h2>
-      <div class="source">Source: <code>navellier_hits.csv</code> &middot; 2026-08-21 00:13</div><div class="bar-track"><div class="bar-seg bar-warning" style="width:79.10%" title="NAVELLIER - WATCH (trend ok, growth factors mixed): 53"></div><div class="bar-seg bar-warning" style="width:14.93%" title="NAVELLIER - TECHNICAL ONLY (weak growth factors): 10"></div><div class="bar-seg bar-good" style="width:5.97%" title="NAVELLIER - MATCH (coiling, no trigger yet): 4"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-warning"></span>NAVELLIER - WATCH (trend ok, growth factors mixed) (53)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>NAVELLIER - TECHNICAL ONLY (weak growth factors) (10)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>NAVELLIER - MATCH (coiling, no trigger yet) (4)</span></div><h3>Top-tier rows (4 of 67)</h3><table><thead><tr><th>symbol</th><th>price</th><th>navellier_grade</th><th>buy_zone</th><th>stop</th></tr></thead><tbody><tr><td>ANET</td><td>183.75</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>187.69-194.3</td><td>175.01</td></tr><tr><td>VLO</td><td>341.51</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>321.51-332.82</td><td>292.34</td></tr><tr><td>ABNB</td><td>185.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>169.59-175.55</td><td>153.84</td></tr><tr><td>CF</td><td>125.7</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>118.7-122.88</td><td>115.3</td></tr></tbody></table>
+      <div class="source">Source: <code>navellier_hits.csv</code> &middot; 2026-08-21 00:13</div><div class="bar-track"><div class="bar-seg bar-warning" style="width:79.10%" title="NAVELLIER - WATCH (trend ok, growth factors mixed): 53"></div><div class="bar-seg bar-warning" style="width:14.93%" title="NAVELLIER - TECHNICAL ONLY (weak growth factors): 10"></div><div class="bar-seg bar-good" style="width:5.97%" title="NAVELLIER - MATCH (coiling, no trigger yet): 4"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-warning"></span>NAVELLIER - WATCH (trend ok, growth factors mixed) (53)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>NAVELLIER - TECHNICAL ONLY (weak growth factors) (10)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>NAVELLIER - MATCH (coiling, no trigger yet) (4)</span></div><h3>Top-tier rows (4 of 67)</h3><div class="table-scroll"><table><thead><tr><th>symbol</th><th>price</th><th>navellier_grade</th><th>buy_zone</th><th>stop</th></tr></thead><tbody><tr><td>ANET</td><td>183.75</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>187.69-194.3</td><td>175.01</td></tr><tr><td>VLO</td><td>341.51</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>321.51-332.82</td><td>292.34</td></tr><tr><td>ABNB</td><td>185.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>169.59-175.55</td><td>153.84</td></tr><tr><td>CF</td><td>125.7</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> NAVELLIER - MATCH (coiling, no trigger yet)</span></td><td>118.7-122.88</td><td>115.3</td></tr></tbody></table></div>
     </section>
     <section class="card">
       <h2>LEAPS Safety Check</h2>
@@ -140,15 +207,19 @@
     </section>
     <section class="card">
       <h2>Put Selling</h2>
-      <div class="source">Source: <code>put_selling_candidates.csv</code> &middot; 2026-08-21 00:27</div><div class="bar-track"><div class="bar-seg bar-warning" style="width:63.24%" title="CAUTION: 43"></div><div class="bar-seg bar-good" style="width:26.47%" title="SAFE TO CONSIDER: 18"></div><div class="bar-seg bar-critical" style="width:10.29%" title="AVOID: 7"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-warning"></span>CAUTION (43)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>SAFE TO CONSIDER (18)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-critical"></span>AVOID (7)</span></div><h3>Top-tier rows (18 of 68)</h3><table><thead><tr><th>symbol</th><th>price</th><th>strike</th><th>premium</th><th>static_return_%</th><th>annualized_%</th><th>downside_cushion_%</th><th>verdict</th></tr></thead><tbody><tr><td>ABNB</td><td>185.0</td><td>172.5</td><td>2.18</td><td>1.26</td><td>13.2</td><td>7.9</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ACGL</td><td>99.31</td><td>95.0</td><td>0.77</td><td>0.81</td><td>10.6</td><td>5.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ALLE</td><td>161.72</td><td>155.0</td><td>1.8</td><td>1.16</td><td>15.1</td><td>5.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ANET</td><td>183.75</td><td>170.0</td><td>4.64</td><td>2.73</td><td>28.5</td><td>10.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>BEN</td><td>33.97</td><td>33.0</td><td>0.51</td><td>1.55</td><td>20.1</td><td>4.4</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>BKR</td><td>62.78</td><td>60.0</td><td>1.0</td><td>1.67</td><td>21.7</td><td>6.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>COO</td><td>76.16</td><td>75.0</td><td>2.25</td><td>3.0</td><td>39.1</td><td>4.5</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>DOC</td><td>21.2</td><td>20.0</td><td>0.13</td><td>0.65</td><td>8.5</td><td>6.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ECL</td><td>281.48</td><td>270.0</td><td>2.98</td><td>1.1</td><td>14.4</td><td>5.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>FAST</td><td>50.66</td><td>50.0</td><td>0.95</td><td>1.9</td><td>24.8</td><td>3.2</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>JNJ</td><td>267.37</td><td>260.0</td><td>4.0</td><td>1.54</td><td>16.0</td><td>4.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MRK</td><td>148.99</td><td>135.0</td><td>1.15</td><td>0.85</td><td>8.9</td><td>10.2</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MRSH</td><td>190.21</td><td>185.0</td><td>2.37</td><td>1.28</td><td>16.7</td><td>4.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MSFT</td><td>481.15</td><td>450.0</td><td>5.0</td><td>1.11</td><td>11.6</td><td>7.5</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>NVDA</td><td>216.85</td><td>205.0</td><td>5.67</td><td>2.77</td><td>28.8</td><td>8.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr></tbody></table>
+      <div class="source">Source: <code>put_selling_candidates.csv</code> &middot; 2026-08-21 00:27</div><div class="bar-track"><div class="bar-seg bar-warning" style="width:63.24%" title="CAUTION: 43"></div><div class="bar-seg bar-good" style="width:26.47%" title="SAFE TO CONSIDER: 18"></div><div class="bar-seg bar-critical" style="width:10.29%" title="AVOID: 7"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-warning"></span>CAUTION (43)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>SAFE TO CONSIDER (18)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-critical"></span>AVOID (7)</span></div><h3>Top-tier rows (18 of 68)</h3><div class="table-scroll"><table><thead><tr><th>symbol</th><th>price</th><th>strike</th><th>premium</th><th>static_return_%</th><th>annualized_%</th><th>downside_cushion_%</th><th>verdict</th></tr></thead><tbody><tr><td>ABNB</td><td>185.0</td><td>172.5</td><td>2.18</td><td>1.26</td><td>13.2</td><td>7.9</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ACGL</td><td>99.31</td><td>95.0</td><td>0.77</td><td>0.81</td><td>10.6</td><td>5.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ALLE</td><td>161.72</td><td>155.0</td><td>1.8</td><td>1.16</td><td>15.1</td><td>5.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ANET</td><td>183.75</td><td>170.0</td><td>4.64</td><td>2.73</td><td>28.5</td><td>10.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>BEN</td><td>33.97</td><td>33.0</td><td>0.51</td><td>1.55</td><td>20.1</td><td>4.4</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>BKR</td><td>62.78</td><td>60.0</td><td>1.0</td><td>1.67</td><td>21.7</td><td>6.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>COO</td><td>76.16</td><td>75.0</td><td>2.25</td><td>3.0</td><td>39.1</td><td>4.5</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>DOC</td><td>21.2</td><td>20.0</td><td>0.13</td><td>0.65</td><td>8.5</td><td>6.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>ECL</td><td>281.48</td><td>270.0</td><td>2.98</td><td>1.1</td><td>14.4</td><td>5.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>FAST</td><td>50.66</td><td>50.0</td><td>0.95</td><td>1.9</td><td>24.8</td><td>3.2</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>JNJ</td><td>267.37</td><td>260.0</td><td>4.0</td><td>1.54</td><td>16.0</td><td>4.3</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MRK</td><td>148.99</td><td>135.0</td><td>1.15</td><td>0.85</td><td>8.9</td><td>10.2</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MRSH</td><td>190.21</td><td>185.0</td><td>2.37</td><td>1.28</td><td>16.7</td><td>4.0</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>MSFT</td><td>481.15</td><td>450.0</td><td>5.0</td><td>1.11</td><td>11.6</td><td>7.5</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr><tr><td>NVDA</td><td>216.85</td><td>205.0</td><td>5.67</td><td>2.77</td><td>28.8</td><td>8.1</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> SAFE TO CONSIDER</span></td></tr></tbody></table></div>
     </section>
     <section class="card">
       <h2>PMCC (Diagonal Spreads)</h2>
-      <div class="source">Source: <code>pmcc_candidates.csv</code> &middot; 2026-08-21 00:22</div><h3>All rows (28)</h3><table><thead><tr><th>symbol</th><th>price</th><th>leaps_delta</th><th>short_delta</th><th>net_debit</th><th>static_return_%</th><th>quote_freshness</th></tr></thead><tbody><tr><td>PCG</td><td>17.96</td><td>0.695</td><td>0.26</td><td>2.92</td><td>30.1</td><td>PASS</td></tr><tr><td>DLTR</td><td>128.45</td><td>0.743</td><td>0.23</td><td>30.03</td><td>19.1</td><td>PASS</td></tr><tr><td>BBY</td><td>85.73</td><td>0.743</td><td>0.289</td><td>18.25</td><td>13.4</td><td>STALE (leaps quote 36d old, short quote 0d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>VLO</td><td>341.51</td><td>0.741</td><td>0.217</td><td>86.45</td><td>11.4</td><td>PASS</td></tr><tr><td>BMY</td><td>65.47</td><td>0.756</td><td>0.212</td><td>12.7</td><td>10.2</td><td>PASS</td></tr><tr><td>BSX</td><td>49.37</td><td>0.712</td><td>0.223</td><td>12.31</td><td>8.9</td><td>PASS</td></tr><tr><td>CF</td><td>125.7</td><td>0.762</td><td>0.327</td><td>30.86</td><td>7.0</td><td>PASS</td></tr><tr><td>MRK</td><td>148.99</td><td>0.762</td><td>0.237</td><td>34.44</td><td>6.9</td><td>PASS</td></tr><tr><td>SCHW</td><td>109.79</td><td>0.716</td><td>0.222</td><td>19.33</td><td>6.8</td><td>PASS</td></tr><tr><td>MA</td><td>573.85</td><td>0.743</td><td>0.197</td><td>93.23</td><td>5.9</td><td>PASS</td></tr><tr><td>LITE</td><td>879.28</td><td>0.749</td><td>0.223</td><td>320.19</td><td>5.6</td><td>PASS</td></tr><tr><td>NDAQ</td><td>97.55</td><td>0.736</td><td>0.202</td><td>17.48</td><td>5.1</td><td>STALE (leaps quote 16d old, short quote 7d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>V</td><td>365.73</td><td>0.748</td><td>0.217</td><td>63.67</td><td>4.7</td><td>PASS</td></tr><tr><td>CTAS</td><td>203.52</td><td>0.743</td><td>0.318</td><td>56.36</td><td>4.7</td><td>STALE (leaps quote 22d old, short quote 1d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>FDX</td><td>326.04</td><td>0.737</td><td>0.181</td><td>77.53</td><td>4.5</td><td>PASS</td></tr></tbody></table>
+      <div class="source">Source: <code>pmcc_candidates.csv</code> &middot; 2026-08-21 00:22</div><h3>All rows (28)</h3><div class="table-scroll"><table><thead><tr><th>symbol</th><th>price</th><th>leaps_delta</th><th>short_delta</th><th>net_debit</th><th>static_return_%</th><th>quote_freshness</th></tr></thead><tbody><tr><td>PCG</td><td>17.96</td><td>0.695</td><td>0.26</td><td>2.92</td><td>30.1</td><td>PASS</td></tr><tr><td>DLTR</td><td>128.45</td><td>0.743</td><td>0.23</td><td>30.03</td><td>19.1</td><td>PASS</td></tr><tr><td>BBY</td><td>85.73</td><td>0.743</td><td>0.289</td><td>18.25</td><td>13.4</td><td>STALE (leaps quote 36d old, short quote 0d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>VLO</td><td>341.51</td><td>0.741</td><td>0.217</td><td>86.45</td><td>11.4</td><td>PASS</td></tr><tr><td>BMY</td><td>65.47</td><td>0.756</td><td>0.212</td><td>12.7</td><td>10.2</td><td>PASS</td></tr><tr><td>BSX</td><td>49.37</td><td>0.712</td><td>0.223</td><td>12.31</td><td>8.9</td><td>PASS</td></tr><tr><td>CF</td><td>125.7</td><td>0.762</td><td>0.327</td><td>30.86</td><td>7.0</td><td>PASS</td></tr><tr><td>MRK</td><td>148.99</td><td>0.762</td><td>0.237</td><td>34.44</td><td>6.9</td><td>PASS</td></tr><tr><td>SCHW</td><td>109.79</td><td>0.716</td><td>0.222</td><td>19.33</td><td>6.8</td><td>PASS</td></tr><tr><td>MA</td><td>573.85</td><td>0.743</td><td>0.197</td><td>93.23</td><td>5.9</td><td>PASS</td></tr><tr><td>LITE</td><td>879.28</td><td>0.749</td><td>0.223</td><td>320.19</td><td>5.6</td><td>PASS</td></tr><tr><td>NDAQ</td><td>97.55</td><td>0.736</td><td>0.202</td><td>17.48</td><td>5.1</td><td>STALE (leaps quote 16d old, short quote 7d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>V</td><td>365.73</td><td>0.748</td><td>0.217</td><td>63.67</td><td>4.7</td><td>PASS</td></tr><tr><td>CTAS</td><td>203.52</td><td>0.743</td><td>0.318</td><td>56.36</td><td>4.7</td><td>STALE (leaps quote 22d old, short quote 1d old -- lastPrice may not reflect current pricing)</td></tr><tr><td>FDX</td><td>326.04</td><td>0.737</td><td>0.181</td><td>77.53</td><td>4.5</td><td>PASS</td></tr></tbody></table></div>
     </section>
     <section class="card">
       <h2>Wyckoff / Volume Profile (4h)</h2>
-      <div class="source">Source: <code>wyckoff_volume_profile.csv</code> &middot; 2026-08-21 00:15</div><div class="bar-track"><div class="bar-seg bar-muted" style="width:99.80%" title="none: 498"></div><div class="bar-seg bar-good" style="width:0.20%" title="CONTINUATION (breakout accepted above VAH): 1"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-muted"></span>none (498)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>CONTINUATION (breakout accepted above VAH) (1)</span></div><h3>Top-tier rows (1 of 499)</h3><table><thead><tr><th>symbol</th><th>price</th><th>context</th><th>setup</th><th>entry</th><th>stop</th><th>risk_pct</th></tr></thead><tbody><tr><td>EXE</td><td>96.07</td><td>above_value</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> CONTINUATION (breakout accepted above VAH)</span></td><td>96.21</td><td>93.74</td><td>2.57</td></tr></tbody></table>
+      <div class="source">Source: <code>wyckoff_volume_profile.csv</code> &middot; 2026-08-21 00:15</div><div class="bar-track"><div class="bar-seg bar-muted" style="width:99.80%" title="none: 498"></div><div class="bar-seg bar-good" style="width:0.20%" title="CONTINUATION (breakout accepted above VAH): 1"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-muted"></span>none (498)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-good"></span>CONTINUATION (breakout accepted above VAH) (1)</span></div><h3>Top-tier rows (1 of 499)</h3><div class="table-scroll"><table><thead><tr><th>symbol</th><th>price</th><th>context</th><th>setup</th><th>entry</th><th>stop</th><th>risk_pct</th></tr></thead><tbody><tr><td>EXE</td><td>96.07</td><td>above_value</td><td><span class="badge badge-good"><span class="badge-icon">▲</span> CONTINUATION (breakout accepted above VAH)</span></td><td>96.21</td><td>93.74</td><td>2.57</td></tr></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>O&#x27;Neil Breakout (price action)</h2>
+      <div class="source">Source: <code>oneil_breakout_candidates.csv</code> &middot; 2026-08-21 01:55</div><div class="bar-track"><div class="bar-seg bar-muted" style="width:66.40%" title="NO BASE FOUND: 334"></div><div class="bar-seg bar-warning" style="width:16.70%" title="SETUP FORMING: 84"></div><div class="bar-seg bar-warning" style="width:9.54%" title="FAULTY BASE: 48"></div><div class="bar-seg bar-warning" style="width:3.58%" title="WEAK BREAKOUT (low volume): 18"></div><div class="bar-seg bar-critical" style="width:3.18%" title="AVOID: 16"></div><div class="bar-seg bar-warning" style="width:0.60%" title="EXTENDED (too late to enter fresh): 3"></div></div><div class="legend"><span class="legend-item"><span class="legend-swatch legend-muted"></span>NO BASE FOUND (334)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>SETUP FORMING (84)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>FAULTY BASE (48)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>WEAK BREAKOUT (low volume) (18)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-critical"></span>AVOID (16)</span> &nbsp; <span class="legend-item"><span class="legend-swatch legend-warning"></span>EXTENDED (too late to enter fresh) (3)</span></div><h3>Top-tier rows (0 of 503)</h3><div class="empty">No rows</div>
     </section>
   <footer>
     Momentum + VCP Stock Screeners &middot; see README.md for the full toolkit &middot;
