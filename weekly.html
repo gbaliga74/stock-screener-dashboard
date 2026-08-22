@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d0d0d">
 <meta name="color-scheme" content="dark">
-<title>Weekly Rollup -- Saturday, August 22, 2026 15:26</title>
+<title>Weekly Rollup -- Saturday, August 22, 2026 15:44</title>
 <style>
   :root {
     --surface: #1a1a19; --page: #0d0d0d; --primary: #ffffff;
@@ -188,6 +188,18 @@
   .badge-icon { font-size: 8px; }
   .consensus { border-color: #3987e555; }
   .consistency { border-color: #199e7055; }
+  /* Section dividers (2026-08-22 declutter pass) -- a plain page-level
+     label between groups of cards, deliberately NOT another .card (no
+     background/border/padding) so it reads as a heading over a group,
+     not one more box competing with the 18 tool cards it's organizing.
+     First one has no top margin/border since it directly follows
+     Recurring This Week with nothing to separate from above it. */
+  .section-divider {
+    font-size: 13px; font-weight: 650; color: var(--secondary);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 28px 0 12px; padding-top: 18px; border-top: 1px solid var(--border);
+  }
+  .section-divider:first-of-type { margin-top: 20px; padding-top: 0; border-top: none; }
   footer {
     color: var(--muted); font-size: 11.5px; margin-top: 20px; padding-top: 16px;
     border-top: 1px solid var(--border); line-height: 1.6;
@@ -206,7 +218,7 @@
 <div class="wrap">
   <header>
     <div class="brand"><span class="brand-dot"></span><h1>Screener Dashboard</h1></div>
-    <div class="sub">Weekly Rollup -- Generated Saturday, August 22, 2026 15:26 &middot; full combined holdings universe,
+    <div class="sub">Weekly Rollup -- Generated Saturday, August 22, 2026 15:44 &middot; full combined holdings universe,
     refreshed Fridays 8pm PT (not every weekday like the Daily view)</div>
     <div class="view-toggle">
       <a class="view-toggle-link" href="dashboard.html">Daily</a>
