@@ -65,7 +65,6 @@ input.tab-radio { display: none; }
 #tab-weekly:checked ~ .panel-weekly { display: block; }
 #tab-daily:checked ~ .panel-daily { display: block; }
 
-.backdrop { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
 .backdrop-empty { color: var(--text-muted); font-size: 0.88rem; margin: 4px 0 16px; }
 .pill {
   display: inline-flex; align-items: center; gap: 5px;
@@ -75,13 +74,20 @@ input.tab-radio { display: none; }
 .pill-sub { color: var(--text-secondary); font-weight: 400; }
 .pill-neutral { background: var(--neutral-pill); }
 .pill-muted { background: var(--neutral-pill); color: var(--text-muted); font-style: italic; }
-.pill-good::before { content: "\25CF"; color: var(--good); }
-.pill-warning::before { content: "\25CF"; color: var(--warning); }
-.pill-critical::before { content: "\25CF"; color: var(--critical); }
-.pill-serious::before { content: "\25CF"; color: var(--serious); }
+
+.sentiment {
+  margin: 4px 0 16px; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--border); border-left: 4px solid var(--text-muted);
+  background: var(--surface-raised);
+}
+.sentiment-good { border-left-color: var(--good); }
+.sentiment-warning { border-left-color: var(--warning); }
+.sentiment-critical { border-left-color: var(--critical); }
+.sentiment-headline { font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+.sentiment-detail { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5; }
 
 .rotation { margin: 16px 0 24px; }
-.rotation summary { cursor: pointer; font-size: 0.88rem; color: var(--text-secondary); font-weight: 600; padding: 4px 0; }
+.rotation-heading { font-size: 0.88rem; color: var(--text-secondary); font-weight: 600; padding: 4px 0; }
 .rot-table { margin-top: 10px; }
 .rot-row { display: grid; grid-template-columns: 28px 160px 1fr 60px; align-items: center; gap: 8px; padding: 3px 0; font-size: 0.8rem; }
 .rot-rank { color: var(--text-muted); }
@@ -172,10 +178,14 @@ footer a { color: var(--blue); }
     <p class="updated">Generated 2026-08-23</p>
   </header>
 
-  <div class="backdrop"><span class="pill pill-warning"><b>O'Neil regime</b> UPTREND UNDER PRESSURE <span class="pill-sub">(4 distribution days)</span></span><span class="pill pill-warning"><b>CANSLIM M-gate</b> NOT CONFIRMED <span class="pill-sub">(6/7, 1.6% off highs)</span></span></div>
   
-    <details class="rotation">
-      <summary>Sector rotation -- 1-month relative strength vs SPY (leading &rarr; lagging)</summary>
+    <div class="sentiment sentiment-good">
+      <div class="sentiment-headline">Cautiously bullish -- uptrend intact but showing some cracks</div>
+      <div class="sentiment-detail">SPY is technically still in an uptrend but has racked up 4 distribution day(s) in the trailing window (O'Neil's own threshold for &quot;under pressure&quot; is 4) -- institutions have been selling into strength more than usual. Worth watching, not yet a breakdown. Its trend template is one check short of a full confirm (6/7), 1.6% off highs -- a shallow, largely healthy pullback, not a breakdown.</div>
+    </div>
+  
+    <div class="rotation">
+      <div class="rotation-heading">Sector rotation -- 1-month relative strength vs SPY (leading &rarr; lagging)</div>
       <div class="rot-table">
         <div class="rot-row">
           <span class="rot-rank">#1</span>
@@ -265,7 +275,7 @@ footer a { color: var(--blue); }
           </span>
           <span class="rot-val rot-val-neg">-11.1pp</span>
         </div></div>
-    </details>
+    </div>
 
   <input type="radio" name="tabs" id="tab-weekly" class="tab-radio" checked>
   <input type="radio" name="tabs" id="tab-daily" class="tab-radio">
@@ -421,7 +431,7 @@ footer a { color: var(--blue); }
     <div class="hist-empty-state">No history yet -- previous weeks' Best-5 reports will appear here as they accumulate.</div>
   </div>
   <div class="panel panel-daily">
-    <p class="updated">as of 2026-08-23 04:58 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
+    <p class="updated">as of 2026-08-23 05:13 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
     
     <div class="card">
       <div class="card-head">
