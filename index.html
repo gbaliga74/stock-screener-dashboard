@@ -128,6 +128,19 @@ input.tab-radio { display: none; }
 
 .empty-state { padding: 32px 20px; text-align: center; color: var(--text-muted); background: var(--surface-raised); border: 1px dashed var(--border); border-radius: 10px; }
 
+.history-heading { font-size: 0.95rem; font-weight: 700; margin: 28px 0 10px; color: var(--text-primary); }
+.hist-day { margin-bottom: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 0 14px; background: var(--surface-raised); }
+.hist-day summary { cursor: pointer; font-size: 0.85rem; font-weight: 600; padding: 10px 0; color: var(--text-secondary); }
+.hist-count { color: var(--text-muted); font-weight: 400; }
+.hist-table { padding: 2px 0 12px; }
+.hist-row { display: grid; grid-template-columns: 70px 1fr 80px 60px; gap: 8px; padding: 4px 0; font-size: 0.82rem; align-items: center; }
+.hist-head { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 2px; }
+.hist-symbol { font-weight: 700; }
+.hist-sector { color: var(--text-secondary); }
+.hist-price, .hist-score { font-variant-numeric: tabular-nums; text-align: right; }
+.hist-empty { color: var(--text-muted); font-style: italic; font-size: 0.82rem; padding: 6px 0 10px; }
+.hist-empty-state { padding: 16px; text-align: center; color: var(--text-muted); font-size: 0.85rem; background: var(--surface-raised); border: 1px dashed var(--border); border-radius: 10px; }
+
 footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); }
 footer a { color: var(--blue); }
 
@@ -141,6 +154,9 @@ footer a { color: var(--blue); }
   .rot-row { grid-template-columns: 22px 1fr 50px; }
   .rot-bar-track { display: none; }
   .tabs label { padding: 8px 12px; font-size: 0.85rem; }
+  .hist-row { grid-template-columns: 56px 1fr 64px; }
+  .hist-row .hist-score { display: none; }
+  .hist-row.hist-head .hist-score { display: none; }
 }
 </style>
 </head>
@@ -379,128 +395,130 @@ footer a { color: var(--blue); }
     </div>
   </div>
   <div class="panel panel-daily">
-    <p class="updated">as of 2026-08-23 01:57 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
+    <p class="updated">as of 2026-08-23 02:59 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
     
     <div class="card">
       <div class="card-head">
         <div class="card-rank">1</div>
         <div class="card-title">
-          <span class="symbol">OSBC</span>
-          <span class="pill pill-muted">Sector unknown</span>
+          <span class="symbol">CF</span>
+          <span class="pill pill-neutral">Materials</span>
         </div>
         <div class="card-score">
-          <span class="score-value">1.05</span>
-          <span class="score-label">2 tool(s) agree</span>
+          <span class="score-value">7.00</span>
+          <span class="score-label">3 tool(s) agree</span>
         </div>
       </div>
       
         <div class="trade-plan">
-          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$25.34</span>
-            <span class="plan-sub">zone 25.06-25.94</span></div>
-          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$23.63</span>
-            <span class="plan-sub">-6.7%</span></div>
-          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$30.56</span>
-            <span class="plan-sub">+20.6%</span></div>
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$129.60</span>
+            <span class="plan-sub">zone 119.68-123.89</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$115.76</span>
+            <span class="plan-sub">-10.7%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$140.15</span>
+            <span class="plan-sub">+8.1%</span></div>
         </div>
-        <div class="sizing">Example size: <b>109 sh</b> ($2,762, risking $186) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
-      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>2 independent tool(s) agree</strong>: RSI+VCP universe screener(s): BUY signal; Multibagger: WATCH (file is 2+ days stale -- not on the daily pipeline). sector unknown for this name (sourced outside the 11-sector-ETF universe). No VPA money-flow data available for this name.</p>
+        <div class="sizing">Example size: <b>13 sh</b> ($1,685, risking $180) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>3 independent tool(s) agree</strong>: Trade Signals: STRONG BUY; O'Neil: BREAKOUT; RSI+VCP universe screener(s): BUY signal. Materials ranks #4/11 on 1-month relative strength vs SPY (+2.7pp), mid-pack. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
     <div class="card">
       <div class="card-head">
         <div class="card-rank">2</div>
         <div class="card-title">
-          <span class="symbol">WASH</span>
-          <span class="pill pill-muted">Sector unknown</span>
+          <span class="symbol">DE</span>
+          <span class="pill pill-neutral">Industrials</span>
         </div>
         <div class="card-score">
-          <span class="score-value">1.05</span>
-          <span class="score-label">2 tool(s) agree</span>
+          <span class="score-value">5.25</span>
+          <span class="score-label">3 tool(s) agree</span>
         </div>
       </div>
       
         <div class="trade-plan">
-          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$39.71</span>
-            <span class="plan-sub">zone 38.94-40.31</span></div>
-          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$36.74</span>
-            <span class="plan-sub">-7.5%</span></div>
-          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$47.45</span>
-            <span class="plan-sub">+19.5%</span></div>
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$647.47</span>
+            <span class="plan-sub">zone 607.35-628.71</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$590.50</span>
+            <span class="plan-sub">-8.8%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$705.13</span>
+            <span class="plan-sub">+8.9%</span></div>
         </div>
-        <div class="sizing">Example size: <b>63 sh</b> ($2,502, risking $187) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
-      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>2 independent tool(s) agree</strong>: RSI+VCP universe screener(s): BUY signal; Multibagger: WATCH (file is 2+ days stale -- not on the daily pipeline). sector unknown for this name (sourced outside the 11-sector-ETF universe). No VPA money-flow data available for this name.</p>
+        <div class="sizing">Example size: <b>3 sh</b> ($1,942, risking $171) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>3 independent tool(s) agree</strong>: Trade Signals: BUY; O'Neil: BREAKOUT; RSI+VCP universe screener(s): BUY signal. Industrials ranks #10/11 on 1-month relative strength vs SPY (-4.7pp), lagging. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
     <div class="card">
       <div class="card-head">
         <div class="card-rank">3</div>
         <div class="card-title">
-          <span class="symbol">ACNB</span>
-          <span class="pill pill-muted">Sector unknown</span>
+          <span class="symbol">NTAP</span>
+          <span class="pill pill-neutral">Technology</span>
         </div>
         <div class="card-score">
-          <span class="score-value">0.75</span>
-          <span class="score-label">1 tool(s) agree</span>
+          <span class="score-value">5.00</span>
+          <span class="score-label">3 tool(s) agree</span>
         </div>
       </div>
       
         <div class="trade-plan">
-          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$64.45</span>
-            <span class="plan-sub">zone 63.41-65.64</span></div>
-          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$60.02</span>
-            <span class="plan-sub">-6.9%</span></div>
-          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$76.88</span>
-            <span class="plan-sub">+19.3%</span></div>
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$192.27</span>
+            <span class="plan-sub">zone 189.6-196.27</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$171.29</span>
+            <span class="plan-sub">-10.9%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$246.23</span>
+            <span class="plan-sub">+28.1%</span></div>
         </div>
-        <div class="sizing">Example size: <b>42 sh</b> ($2,707, risking $186) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
-      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>1 independent tool(s) agree</strong>: RSI+VCP universe screener(s): BUY signal. sector unknown for this name (sourced outside the 11-sector-ETF universe). No VPA money-flow data available for this name.</p>
+        <div class="sizing">Example size: <b>8 sh</b> ($1,538, risking $168) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>3 independent tool(s) agree</strong>: Trade Signals: STRONG BUY; Put-Selling: SAFE TO CONSIDER; RSI+VCP universe screener(s): BUY signal. Technology ranks #8/11 on 1-month relative strength vs SPY (-1.0pp), mid-pack. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
     <div class="card">
       <div class="card-head">
         <div class="card-rank">4</div>
         <div class="card-title">
-          <span class="symbol">ALOT</span>
-          <span class="pill pill-muted">Sector unknown</span>
+          <span class="symbol">WST</span>
+          <span class="pill pill-neutral">Health Care</span>
         </div>
         <div class="card-score">
-          <span class="score-value">0.75</span>
-          <span class="score-label">1 tool(s) agree</span>
+          <span class="score-value">4.90</span>
+          <span class="score-label">3 tool(s) agree</span>
         </div>
       </div>
       
         <div class="trade-plan">
-          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$28.92</span>
-            <span class="plan-sub">zone 28.58-29.58</span></div>
-          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$25.92</span>
-            <span class="plan-sub">-10.4%</span></div>
-          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$36.90</span>
-            <span class="plan-sub">+27.6%</span></div>
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$353.08</span>
+            <span class="plan-sub">zone 347.67-359.9</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$335.35</span>
+            <span class="plan-sub">-5.0%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$409.00</span>
+            <span class="plan-sub">+15.8%</span></div>
         </div>
-        <div class="sizing">Example size: <b>62 sh</b> ($1,793, risking $186) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
-      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>1 independent tool(s) agree</strong>: RSI+VCP universe screener(s): BUY signal. sector unknown for this name (sourced outside the 11-sector-ETF universe). No VPA money-flow data available for this name.</p>
+        <div class="sizing">Example size: <b>10 sh</b> ($3,531, risking $177) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>3 independent tool(s) agree</strong>: Trade Signals: STRONG BUY; O'Neil: SETUP FORMING; RSI+VCP universe screener(s): BUY signal. Health Care ranks #2/11 on 1-month relative strength vs SPY (+4.4pp), leading. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
     <div class="card">
       <div class="card-head">
         <div class="card-rank">5</div>
         <div class="card-title">
-          <span class="symbol">AMTB</span>
-          <span class="pill pill-muted">Sector unknown</span>
+          <span class="symbol">FCX</span>
+          <span class="pill pill-neutral">Materials</span>
         </div>
         <div class="card-score">
-          <span class="score-value">0.75</span>
-          <span class="score-label">1 tool(s) agree</span>
+          <span class="score-value">4.55</span>
+          <span class="score-label">4 tool(s) agree</span>
         </div>
       </div>
       
         <div class="trade-plan">
-          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$28.69</span>
-            <span class="plan-sub">zone 28.4-29.4</span></div>
-          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$26.51</span>
-            <span class="plan-sub">-7.6%</span></div>
-          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$35.18</span>
-            <span class="plan-sub">+22.6%</span></div>
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$76.66</span>
+            <span class="plan-sub">zone 67.43-69.81</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop</span><span class="plan-value plan-stop">$64.10</span>
+            <span class="plan-sub">-16.4%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$81.23</span>
+            <span class="plan-sub">+6.0%</span></div>
         </div>
-        <div class="sizing">Example size: <b>86 sh</b> ($2,467, risking $187) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
-      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>1 independent tool(s) agree</strong>: RSI+VCP universe screener(s): BUY signal. sector unknown for this name (sourced outside the 11-sector-ETF universe). No VPA money-flow data available for this name.</p>
+        <div class="sizing">Example size: <b>14 sh</b> ($1,073, risking $176) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>4 independent tool(s) agree</strong>: Trade Signals: STRONG BUY; O'Neil: EXTENDED (too late to enter fresh); LEAPS: SAFE TO CONSIDER; RSI+VCP universe screener(s): BUY signal. Materials ranks #4/11 on 1-month relative strength vs SPY (+2.7pp), mid-pack. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
+    <div class="history-heading">Previous days (Mon&ndash;Fri)</div>
+    <div class="hist-empty-state">No history yet -- snapshots build up day by day from today's pipeline run onward.</div>
   </div>
 
   <footer>
