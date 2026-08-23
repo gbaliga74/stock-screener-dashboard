@@ -107,8 +107,12 @@ input.tab-radio { display: none; }
   display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);
   flex-shrink: 0;
 }
-.card-title { display: flex; align-items: center; gap: 8px; flex: 1; }
-.symbol { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; }
+.card-title { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.symbol-row { display: flex; align-items: center; gap: 8px; }
+.symbol { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; color: var(--text-primary); text-decoration: none; }
+.symbol:hover { color: var(--blue); text-decoration: underline; }
+.company-name { font-size: 0.82rem; color: var(--text-secondary); }
+.pill-exchange { background: var(--neutral-pill); color: var(--text-secondary); font-size: 0.72rem; padding: 3px 8px; }
 .card-score { text-align: right; }
 .score-value { display: block; font-size: 1.05rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .score-label { display: block; font-size: 0.72rem; color: var(--text-muted); }
@@ -168,7 +172,7 @@ footer a { color: var(--blue); }
     <p class="updated">Generated 2026-08-23</p>
   </header>
 
-  <div class="backdrop"><span class="pill pill-good"><b>Siegel 200MA</b> RISK_ON</span><span class="pill pill-warning"><b>O'Neil regime</b> UPTREND UNDER PRESSURE <span class="pill-sub">(4 distribution days)</span></span><span class="pill pill-warning"><b>CANSLIM M-gate</b> NOT CONFIRMED <span class="pill-sub">(6/7, 1.6% off highs)</span></span></div>
+  <div class="backdrop"><span class="pill pill-warning"><b>O'Neil regime</b> UPTREND UNDER PRESSURE <span class="pill-sub">(4 distribution days)</span></span><span class="pill pill-warning"><b>CANSLIM M-gate</b> NOT CONFIRMED <span class="pill-sub">(6/7, 1.6% off highs)</span></span></div>
   
     <details class="rotation">
       <summary>Sector rotation -- 1-month relative strength vs SPY (leading &rarr; lagging)</summary>
@@ -277,7 +281,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">1</div>
         <div class="card-title">
-          <span class="symbol">CF</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=CF" target="_blank" rel="noopener">CF</a>
+            
+          </div>
+          
           <span class="pill pill-neutral">Materials</span>
         </div>
         <div class="card-score">
@@ -301,7 +309,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">2</div>
         <div class="card-title">
-          <span class="symbol">ANET</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=ANET" target="_blank" rel="noopener">ANET</a>
+            
+          </div>
+          
           <span class="pill pill-neutral">Technology</span>
         </div>
         <div class="card-score">
@@ -325,7 +337,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">3</div>
         <div class="card-title">
-          <span class="symbol">NTAP</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=NTAP" target="_blank" rel="noopener">NTAP</a>
+            
+          </div>
+          
           <span class="pill pill-neutral">Technology</span>
         </div>
         <div class="card-score">
@@ -349,7 +365,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">4</div>
         <div class="card-title">
-          <span class="symbol">GRMN</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=GRMN" target="_blank" rel="noopener">GRMN</a>
+            
+          </div>
+          
           <span class="pill pill-neutral">Consumer Discretionary</span>
         </div>
         <div class="card-score">
@@ -373,7 +393,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">5</div>
         <div class="card-title">
-          <span class="symbol">WAB</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=WAB" target="_blank" rel="noopener">WAB</a>
+            
+          </div>
+          
           <span class="pill pill-neutral">Industrials</span>
         </div>
         <div class="card-score">
@@ -393,15 +417,21 @@ footer a { color: var(--blue); }
         <div class="sizing">Example size: <b>9 sh</b> ($2,678, risking $186) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
       <p class="explanation">Market backdrop: RISK_ON, UPTREND UNDER PRESSURE, CANSLIM M not confirmed. <strong>5 independent tool(s) agree</strong>: Trade Signals: STRONG BUY; Minervini: WATCH (trend ok, fundamentals mixed); CANSLIM: WATCH (leader, fundamentals mixed); Navellier: WATCH (trend ok, growth factors mixed); RSI+VCP universe screener(s): BUY signal. Industrials ranks #10/11 on 1-month relative strength vs SPY (-4.7pp), lagging. No notable volume/price money-flow signal either way on the latest bars (checked, nothing to report).</p>
     </div>
+    <div class="history-heading">Previous weeks</div>
+    <div class="hist-empty-state">No history yet -- previous weeks' Best-5 reports will appear here as they accumulate.</div>
   </div>
   <div class="panel panel-daily">
-    <p class="updated">as of 2026-08-23 02:59 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
+    <p class="updated">as of 2026-08-23 04:58 &mdash; lighter-weight daily check, the weekly report above is the more curated read</p>
     
     <div class="card">
       <div class="card-head">
         <div class="card-rank">1</div>
         <div class="card-title">
-          <span class="symbol">CF</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=CF" target="_blank" rel="noopener">CF</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">CF Industries Holdings, Inc.</div>
           <span class="pill pill-neutral">Materials</span>
         </div>
         <div class="card-score">
@@ -425,7 +455,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">2</div>
         <div class="card-title">
-          <span class="symbol">DE</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=DE" target="_blank" rel="noopener">DE</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">Deere &amp; Company</div>
           <span class="pill pill-neutral">Industrials</span>
         </div>
         <div class="card-score">
@@ -449,7 +483,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">3</div>
         <div class="card-title">
-          <span class="symbol">NTAP</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=NTAP" target="_blank" rel="noopener">NTAP</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">NetApp, Inc.</div>
           <span class="pill pill-neutral">Technology</span>
         </div>
         <div class="card-score">
@@ -473,7 +511,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">4</div>
         <div class="card-title">
-          <span class="symbol">WST</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=WST" target="_blank" rel="noopener">WST</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">West Pharmaceutical Services, Inc.</div>
           <span class="pill pill-neutral">Health Care</span>
         </div>
         <div class="card-score">
@@ -497,7 +539,11 @@ footer a { color: var(--blue); }
       <div class="card-head">
         <div class="card-rank">5</div>
         <div class="card-title">
-          <span class="symbol">FCX</span>
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=FCX" target="_blank" rel="noopener">FCX</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">Freeport-McMoRan Inc.</div>
           <span class="pill pill-neutral">Materials</span>
         </div>
         <div class="card-score">
