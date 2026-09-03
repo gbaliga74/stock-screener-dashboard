@@ -58,12 +58,20 @@ input.tab-radio { display: none; }
   cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px;
 }
 #tab-weekly:checked ~ .tabs label[for="tab-weekly"],
-#tab-daily:checked ~ .tabs label[for="tab-daily"] {
+#tab-daily:checked ~ .tabs label[for="tab-daily"],
+#tab-momentum:checked ~ .tabs label[for="tab-momentum"] {
   color: var(--text-primary); border-bottom-color: var(--blue);
 }
 .panel { display: none; }
 #tab-weekly:checked ~ .panel-weekly { display: block; }
 #tab-daily:checked ~ .panel-daily { display: block; }
+#tab-momentum:checked ~ .panel-momentum { display: block; }
+
+.section-intro { font-size: 0.85rem; color: var(--text-secondary); margin: 4px 0 16px; padding: 12px 14px;
+  background: var(--surface-raised); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 8px; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill-good { background: var(--neutral-pill); color: var(--good); font-weight: 600; }
+.pill-warn { background: var(--neutral-pill); color: var(--serious); font-weight: 600; }
 
 .backdrop-empty { color: var(--text-muted); font-size: 0.88rem; margin: 4px 0 16px; }
 .pill {
@@ -175,7 +183,7 @@ footer a { color: var(--blue); }
   <header class="page-head">
     <h1>Swing Trade Setups</h1>
     <p class="subtitle">The best-of-breed consensus across this project's screeners &mdash; not a data dump, just what to actually consider.</p>
-    <p class="updated">Generated 2026-09-02</p>
+    <p class="updated">Generated 2026-09-03</p>
   </header>
 
   
@@ -279,9 +287,11 @@ footer a { color: var(--blue); }
 
   <input type="radio" name="tabs" id="tab-weekly" class="tab-radio" checked>
   <input type="radio" name="tabs" id="tab-daily" class="tab-radio">
+  <input type="radio" name="tabs" id="tab-momentum" class="tab-radio">
   <div class="tabs">
     <label for="tab-weekly">This Week's Best 5</label>
     <label for="tab-daily">Today's Pulse</label>
+    <label for="tab-momentum">Early Momentum</label>
   </div>
 
   <div class="panel panel-weekly">
@@ -610,6 +620,40 @@ footer a { color: var(--blue); }
     <div class="history-heading">Previous days (Mon&ndash;Fri)</div>
     <div class="history">
     <details class="hist-day">
+      <summary>Wednesday, 2026-09-02 <span class="hist-count">(5 picks)</span></summary>
+      <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
+        <div class="hist-row">
+          <span class="hist-symbol">ABNB</span>
+          <span class="hist-sector">Consumer Discretionary</span>
+          <span class="hist-price">$183.26</span>
+          <span class="hist-score">5.05</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">ALL</span>
+          <span class="hist-sector">Financials</span>
+          <span class="hist-price">$259.34</span>
+          <span class="hist-score">5.00</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">DXCM</span>
+          <span class="hist-sector">Health Care</span>
+          <span class="hist-price">$89.69</span>
+          <span class="hist-score">5.00</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">CF</span>
+          <span class="hist-sector">Materials</span>
+          <span class="hist-price">$139.27</span>
+          <span class="hist-score">4.80</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">BDX</span>
+          <span class="hist-sector">Health Care</span>
+          <span class="hist-price">$187.52</span>
+          <span class="hist-score">4.50</span>
+        </div></div>
+    </details>
+    <details class="hist-day">
       <summary>Tuesday, 2026-09-01 <span class="hist-count">(5 picks)</span></summary>
       <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
         <div class="hist-row">
@@ -744,41 +788,153 @@ footer a { color: var(--blue); }
           <span class="hist-price">$89.29</span>
           <span class="hist-score">4.50</span>
         </div></div>
-    </details>
-    <details class="hist-day">
-      <summary>Wednesday, 2026-08-26 <span class="hist-count">(5 picks)</span></summary>
-      <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
-        <div class="hist-row">
-          <span class="hist-symbol">CF</span>
-          <span class="hist-sector">Materials</span>
-          <span class="hist-price">$125.70</span>
-          <span class="hist-score">4.90</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">WST</span>
-          <span class="hist-sector">Health Care</span>
-          <span class="hist-price">$349.92</span>
-          <span class="hist-score">4.90</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">KO</span>
-          <span class="hist-sector">Consumer Staples</span>
-          <span class="hist-price">$90.08</span>
-          <span class="hist-score">4.55</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">CAH</span>
-          <span class="hist-sector">Health Care</span>
-          <span class="hist-price">$238.40</span>
-          <span class="hist-score">4.50</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">DXCM</span>
-          <span class="hist-sector">Health Care</span>
-          <span class="hist-price">$88.96</span>
-          <span class="hist-score">4.50</span>
-        </div></div>
     </details></div>
+  </div>
+  <div class="panel panel-momentum">
+    <p class="updated">as of 2026-09-03 12:02 &mdash; top 5 bullish setups by early-momentum score</p>
+    <div class="section-intro">
+      <strong>Different from the setups above.</strong> These are names whose direction just
+      <em>inflected</em> &mdash; relative strength accelerating, price back above its 21-day EMA on
+      volume &mdash; caught <em>before</em> a base forms, which is exactly what the consensus
+      screeners grade AVOID. A hit means "something changed with conviction," not "good trade."
+      Size small and let the bracket (stop = the reclaimed EMA) run the exit.
+    </div>
+    
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">1</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=BBY" target="_blank" rel="noopener">BBY</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">Best Buy Co., Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Consumer Discretionary</span><span class="pill pill-good">with-trend</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">92</span>
+          <span class="score-label">early-momentum score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$87.42</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (EMA)</span><span class="plan-value plan-stop">$83.20</span>
+            <span class="plan-sub">-4.8%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$95.86</span>
+            <span class="plan-sub">+9.7%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>44 sh</b> ($3,846, risking $186) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">RS accelerating up (+4.3% vs SPY over 5d, +2.9% over 21d). reclaimed 21-EMA 1d ago, now +3.0% from it. Vol 2.0x 50d-avg on the move. with-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $83.20.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">2</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=PFG" target="_blank" rel="noopener">PFG</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Principal Financial Group, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Financials</span><span class="pill pill-good">with-trend</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">91</span>
+          <span class="score-label">early-momentum score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$117.82</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (EMA)</span><span class="plan-value plan-stop">$110.11</span>
+            <span class="plan-sub">-6.5%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$133.24</span>
+            <span class="plan-sub">+13.1%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>24 sh</b> ($2,828, risking $185) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">RS accelerating up (+4.7% vs SPY over 5d, +2.1% over 21d; RS at 20d high). reclaimed 21-EMA 0d ago, now +4.9% from it. Vol 1.7x 50d-avg on the move. with-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $110.11.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">3</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=SWKS" target="_blank" rel="noopener">SWKS</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Skyworks Solutions, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">with-trend</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">78</span>
+          <span class="score-label">early-momentum score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$72.24</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (EMA)</span><span class="plan-value plan-stop">$66.29</span>
+            <span class="plan-sub">-8.2%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$84.14</span>
+            <span class="plan-sub">+16.5%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>31 sh</b> ($2,239, risking $184) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">RS accelerating up (+6.9% vs SPY over 5d, +7.3% over 21d). reclaimed 21-EMA 3d ago, now +6.8% from it. Vol 3.6x 50d-avg on the move. with-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $66.29.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">4</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=PODD" target="_blank" rel="noopener">PODD</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Insulet Corporation</div>
+          <div class="pill-row"><span class="pill pill-neutral">Health Care</span><span class="pill pill-warn">counter-trend</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">72</span>
+          <span class="score-label">early-momentum score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$150.63</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (EMA)</span><span class="plan-value plan-stop">$145.34</span>
+            <span class="plan-sub">-3.5%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$161.21</span>
+            <span class="plan-sub">+7.0%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>35 sh</b> ($5,272, risking $185) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">RS accelerating up (+4.7% vs SPY over 5d, +12.5% over 21d). reclaimed 21-EMA 3d ago, now +1.6% from it. Vol 4.1x 50d-avg on the move. counter-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $145.34.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">5</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=DG" target="_blank" rel="noopener">DG</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">Dollar General Corporation</div>
+          <div class="pill-row"><span class="pill pill-neutral">Consumer Staples</span><span class="pill pill-good">with-trend</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">69</span>
+          <span class="score-label">early-momentum score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$131.29</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (EMA)</span><span class="plan-value plan-stop">$122.74</span>
+            <span class="plan-sub">-6.5%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$148.40</span>
+            <span class="plan-sub">+13.0%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>21 sh</b> ($2,757, risking $180) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">RS accelerating up (+3.9% vs SPY over 5d, +2.9% over 21d). reclaimed 21-EMA 3d ago, now +4.8% from it. Vol 1.7x 50d-avg on the move. with-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $122.74.</p>
+    </div>
   </div>
 
   <footer>
