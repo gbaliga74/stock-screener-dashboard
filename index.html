@@ -59,13 +59,15 @@ input.tab-radio { display: none; }
 }
 #tab-weekly:checked ~ .tabs label[for="tab-weekly"],
 #tab-daily:checked ~ .tabs label[for="tab-daily"],
-#tab-momentum:checked ~ .tabs label[for="tab-momentum"] {
+#tab-momentum:checked ~ .tabs label[for="tab-momentum"],
+#tab-pullback:checked ~ .tabs label[for="tab-pullback"] {
   color: var(--text-primary); border-bottom-color: var(--blue);
 }
 .panel { display: none; }
 #tab-weekly:checked ~ .panel-weekly { display: block; }
 #tab-daily:checked ~ .panel-daily { display: block; }
 #tab-momentum:checked ~ .panel-momentum { display: block; }
+#tab-pullback:checked ~ .panel-pullback { display: block; }
 
 .section-intro { font-size: 0.85rem; color: var(--text-secondary); margin: 4px 0 16px; padding: 12px 14px;
   background: var(--surface-raised); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 8px; }
@@ -183,7 +185,7 @@ footer a { color: var(--blue); }
   <header class="page-head">
     <h1>Swing Trade Setups</h1>
     <p class="subtitle">The best-of-breed consensus across this project's screeners &mdash; not a data dump, just what to actually consider.</p>
-    <p class="updated">Generated 2026-09-03</p>
+    <p class="updated">Generated 2026-09-04</p>
   </header>
 
   
@@ -288,10 +290,12 @@ footer a { color: var(--blue); }
   <input type="radio" name="tabs" id="tab-weekly" class="tab-radio" checked>
   <input type="radio" name="tabs" id="tab-daily" class="tab-radio">
   <input type="radio" name="tabs" id="tab-momentum" class="tab-radio">
+  <input type="radio" name="tabs" id="tab-pullback" class="tab-radio">
   <div class="tabs">
     <label for="tab-weekly">This Week's Best 5</label>
     <label for="tab-daily">Today's Pulse</label>
     <label for="tab-momentum">Early Momentum</label>
+    <label for="tab-pullback">Pullback Re-Entry</label>
   </div>
 
   <div class="panel panel-weekly">
@@ -620,6 +624,40 @@ footer a { color: var(--blue); }
     <div class="history-heading">Previous days (Mon&ndash;Fri)</div>
     <div class="history">
     <details class="hist-day">
+      <summary>Thursday, 2026-09-03 <span class="hist-count">(5 picks)</span></summary>
+      <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
+        <div class="hist-row">
+          <span class="hist-symbol">ABNB</span>
+          <span class="hist-sector">Consumer Discretionary</span>
+          <span class="hist-price">$185.24</span>
+          <span class="hist-score">5.05</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">ADM</span>
+          <span class="hist-sector">Consumer Staples</span>
+          <span class="hist-price">$83.38</span>
+          <span class="hist-score">5.00</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">DXCM</span>
+          <span class="hist-sector">Health Care</span>
+          <span class="hist-price">$89.65</span>
+          <span class="hist-score">5.00</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">NUE</span>
+          <span class="hist-sector">Materials</span>
+          <span class="hist-price">$262.45</span>
+          <span class="hist-score">5.00</span>
+        </div>
+        <div class="hist-row">
+          <span class="hist-symbol">KO</span>
+          <span class="hist-sector">Consumer Staples</span>
+          <span class="hist-price">$88.92</span>
+          <span class="hist-score">4.55</span>
+        </div></div>
+    </details>
+    <details class="hist-day">
       <summary>Wednesday, 2026-09-02 <span class="hist-count">(5 picks)</span></summary>
       <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
         <div class="hist-row">
@@ -752,40 +790,6 @@ footer a { color: var(--blue); }
           <span class="hist-symbol">DGX</span>
           <span class="hist-sector">Health Care</span>
           <span class="hist-price">$242.76</span>
-          <span class="hist-score">4.50</span>
-        </div></div>
-    </details>
-    <details class="hist-day">
-      <summary>Thursday, 2026-08-27 <span class="hist-count">(5 picks)</span></summary>
-      <div class="hist-table"><div class="hist-row hist-head"><span>Symbol</span><span>Sector</span><span>Price</span><span>Score</span></div>
-        <div class="hist-row">
-          <span class="hist-symbol">NVDA</span>
-          <span class="hist-sector">Technology</span>
-          <span class="hist-price">$227.98</span>
-          <span class="hist-score">7.75</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">CF</span>
-          <span class="hist-sector">Materials</span>
-          <span class="hist-price">$125.71</span>
-          <span class="hist-score">4.90</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">KO</span>
-          <span class="hist-sector">Consumer Staples</span>
-          <span class="hist-price">$89.06</span>
-          <span class="hist-score">4.55</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">DGX</span>
-          <span class="hist-sector">Health Care</span>
-          <span class="hist-price">$244.61</span>
-          <span class="hist-score">4.50</span>
-        </div>
-        <div class="hist-row">
-          <span class="hist-symbol">DXCM</span>
-          <span class="hist-sector">Health Care</span>
-          <span class="hist-price">$89.29</span>
           <span class="hist-score">4.50</span>
         </div></div>
     </details></div>
@@ -934,6 +938,152 @@ footer a { color: var(--blue); }
         </div>
         <div class="sizing">Example size: <b>21 sh</b> ($2,757, risking $180) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
       <p class="explanation">RS accelerating up (+3.9% vs SPY over 5d, +2.9% over 21d). reclaimed 21-EMA 3d ago, now +4.8% from it. Vol 1.7x 50d-avg on the move. with-trend vs the 200-day. Thesis fails on a close back through the 21-EMA -- suggested stop $122.74.</p>
+    </div>
+  </div>
+  <div class="panel panel-pullback">
+    <p class="updated">as of 2026-09-04 07:32 &mdash; top 5 second-chance entries by pullback score</p>
+    <div class="section-intro">
+      <strong>Different from the setups above.</strong> These are proven leaders (beating SPY over
+      6 months, still above their 200-day trend) that ran hard, are now pulling back on
+      <em>light</em> volume, and have reached a real support line (21-day or 50-day EMA) &mdash;
+      the second-chance entry after "too extended to chase." Stop sits just below that support,
+      tighter than the original breakout's stop would have been.
+    </div>
+    
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">1</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=STX" target="_blank" rel="noopener">STX</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Seagate Technology Holdings plc</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">at the 21-EMA</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">86</span>
+          <span class="score-label">pullback score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$841.36</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (support)</span><span class="plan-value plan-stop">$815.24</span>
+            <span class="plan-sub">-3.1%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$893.60</span>
+            <span class="plan-sub">+6.2%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>7 sh</b> ($5,890, risking $183) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Proven leader: +97% vs SPY over 6mo, still above its 200-day MA. Ran to +14% above the 21-EMA on 2026-08-17 ($994.79), now -15.4% off that high, sitting at the 21-EMA ($840.45). Volume since the peak is 0.69x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 21-EMA -- suggested stop $815.24.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">2</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=BAX" target="_blank" rel="noopener">BAX</a>
+            <span class="pill pill-exchange">NYSE</span>
+          </div>
+          <div class="company-name">Baxter International Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Health Care</span><span class="pill pill-good">at the 21-EMA</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">68</span>
+          <span class="score-label">pullback score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$25.99</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (support)</span><span class="plan-value plan-stop">$25.15</span>
+            <span class="plan-sub">-3.2%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$27.67</span>
+            <span class="plan-sub">+6.5%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>223 sh</b> ($5,796, risking $187) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Proven leader: +27% vs SPY over 6mo, still above its 200-day MA. Ran to +18% above the 21-EMA on 2026-08-04 ($28.34), now -8.3% off that high, sitting at the 21-EMA ($25.93). Volume since the peak is 0.89x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 21-EMA -- suggested stop $25.15.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">3</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=MRVL" target="_blank" rel="noopener">MRVL</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Marvell Technology, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">at the 50-EMA</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">65</span>
+          <span class="score-label">pullback score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$218.39</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (support)</span><span class="plan-value plan-stop">$212.77</span>
+            <span class="plan-sub">-2.6%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$229.63</span>
+            <span class="plan-sub">+5.1%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>28 sh</b> ($6,115, risking $157) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Proven leader: +106% vs SPY over 6mo, still above its 200-day MA. Ran to +14% above the 21-EMA on 2026-08-20 ($251.01), now -13.0% off that high, sitting at the 50-EMA ($219.35). Volume since the peak is 0.95x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 50-EMA -- suggested stop $212.77.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">4</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=ZBRA" target="_blank" rel="noopener">ZBRA</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Zebra Technologies Corporation</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">at the 21-EMA</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">60</span>
+          <span class="score-label">pullback score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$360.92</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (support)</span><span class="plan-value plan-stop">$340.88</span>
+            <span class="plan-sub">-5.6%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$400.99</span>
+            <span class="plan-sub">+11.1%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>9 sh</b> ($3,248, risking $180) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Proven leader: +48% vs SPY over 6mo, still above its 200-day MA. Ran to +21% above the 21-EMA on 2026-08-11 ($383.06), now -5.8% off that high, sitting at the 21-EMA ($351.42). Volume since the peak is 0.78x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 21-EMA -- suggested stop $340.88.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">5</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=AMD" target="_blank" rel="noopener">AMD</a>
+            <span class="pill pill-exchange">Nasdaq</span>
+          </div>
+          <div class="company-name">Advanced Micro Devices, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">at the 21-EMA</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">58</span>
+          <span class="score-label">pullback score</span>
+        </div>
+      </div>
+      
+        <div class="trade-plan">
+          <div class="plan-cell"><span class="plan-label">Entry</span><span class="plan-value">$468.95</span></div>
+          <div class="plan-cell"><span class="plan-label">Stop (support)</span><span class="plan-value plan-stop">$460.48</span>
+            <span class="plan-sub">-1.8%</span></div>
+          <div class="plan-cell"><span class="plan-label">Target (2R)</span><span class="plan-value plan-target">$485.88</span>
+            <span class="plan-sub">+3.6%</span></div>
+        </div>
+        <div class="sizing">Example size: <b>13 sh</b> ($6,096, risking $110) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
+      <p class="explanation">Proven leader: +102% vs SPY over 6mo, still above its 200-day MA. Ran to +13% above the 21-EMA on 2026-06-30 ($580.91), now -19.3% off that high, sitting at the 21-EMA ($474.72). Volume since the peak is 0.97x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 21-EMA -- suggested stop $460.48.</p>
     </div>
   </div>
 
