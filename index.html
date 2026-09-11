@@ -60,7 +60,8 @@ input.tab-radio { display: none; }
 #tab-weekly:checked ~ .tabs label[for="tab-weekly"],
 #tab-daily:checked ~ .tabs label[for="tab-daily"],
 #tab-momentum:checked ~ .tabs label[for="tab-momentum"],
-#tab-pullback:checked ~ .tabs label[for="tab-pullback"] {
+#tab-pullback:checked ~ .tabs label[for="tab-pullback"],
+#tab-buffett:checked ~ .tabs label[for="tab-buffett"] {
   color: var(--text-primary); border-bottom-color: var(--blue);
 }
 .panel { display: none; }
@@ -68,6 +69,7 @@ input.tab-radio { display: none; }
 #tab-daily:checked ~ .panel-daily { display: block; }
 #tab-momentum:checked ~ .panel-momentum { display: block; }
 #tab-pullback:checked ~ .panel-pullback { display: block; }
+#tab-buffett:checked ~ .panel-buffett { display: block; }
 
 .section-intro { font-size: 0.85rem; color: var(--text-secondary); margin: 4px 0 16px; padding: 12px 14px;
   background: var(--surface-raised); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 8px; }
@@ -145,6 +147,18 @@ input.tab-radio { display: none; }
 .sizing { font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 10px; }
 
 .explanation { font-size: 0.88rem; color: var(--text-secondary); margin: 8px 0 0; }
+
+.rangebar { position: relative; height: 34px; margin: 16px 4px 8px; }
+.rb-track { position: relative; height: 6px; border-radius: 3px; margin-top: 12px;
+  background: linear-gradient(to right, var(--good) 0%, var(--warning) 45%, var(--serious) 70%, var(--critical) 100%);
+  opacity: 0.25; }
+.rb-range { position: absolute; top: 12px; height: 6px; border-radius: 3px; background: var(--text-primary); opacity: 0.15; }
+.rb-tick { position: absolute; top: 6px; width: 2px; height: 18px; background: var(--text-primary); opacity: 0.5; }
+.rb-tick-label { position: absolute; top: 26px; font-size: 0.68rem; color: var(--text-muted); transform: translateX(-50%); white-space: nowrap; }
+.rb-price { position: absolute; top: -1px; width: 13px; height: 13px; border-radius: 50%;
+  transform: translateX(-50%); border: 2px solid var(--surface-raised); box-shadow: 0 0 0 1px var(--border); }
+.rb-price-label { position: absolute; top: -20px; font-size: 0.78rem; font-weight: 700; transform: translateX(-50%); white-space: nowrap; }
+.buf-row { grid-template-columns: 60px 90px 1fr 90px; }
 
 .empty-state { padding: 32px 20px; text-align: center; color: var(--text-muted); background: var(--surface-raised); border: 1px dashed var(--border); border-radius: 10px; }
 
@@ -291,11 +305,13 @@ footer a { color: var(--blue); }
   <input type="radio" name="tabs" id="tab-daily" class="tab-radio">
   <input type="radio" name="tabs" id="tab-momentum" class="tab-radio">
   <input type="radio" name="tabs" id="tab-pullback" class="tab-radio">
+  <input type="radio" name="tabs" id="tab-buffett" class="tab-radio">
   <div class="tabs">
     <label for="tab-weekly">This Week's Best 5</label>
     <label for="tab-daily">Today's Pulse</label>
     <label for="tab-momentum">Early Momentum</label>
     <label for="tab-pullback">Pullback Re-Entry</label>
+    <label for="tab-buffett">Margin of Safety</label>
   </div>
 
   <div class="panel panel-weekly">
@@ -1119,6 +1135,327 @@ footer a { color: var(--blue); }
         <div class="sizing">Example size: <b>14 sh</b> ($2,794, risking $184) &mdash; assumes $25,000 account, 0.75% risk/trade, capped at 25.0% of account</div>
       <p class="explanation">Proven leader: +29% vs SPY over 6mo, still above its 200-day MA. Ran to +14% above the 21-EMA on 2026-08-12 ($210.50), now -5.2% off that high, sitting at the 21-EMA ($192.18). Volume since the peak is 0.78x the 50-day average -- light selling, no sign of distribution. Thesis fails on a real breakdown through the 21-EMA -- suggested stop $186.42.</p>
     </div>
+  </div>
+  <div class="panel panel-buffett">
+    <p class="updated">week of 2026-09-11 &mdash; quality gate + conservative DCF, full ETF universe</p>
+    <div class="section-intro">
+      <strong>Not a swing signal &mdash; a different discipline entirely.</strong> A hard ROIC/margin/
+      debt/free-cash-flow quality gate first, no price considered, then a conservative 10-year DCF
+      for whatever survives it (bear/base/bull, discount rate and growth moving together). These
+      are "wonderful business, priced with a margin of safety even in the bear case" &mdash;
+      3&ndash;10&nbsp;year holds, not trades. Runs weekly, Friday, full universe.
+    </div>
+    
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">1</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=REPX" target="_blank" rel="noopener">REPX</a>
+          </div>
+          <div class="company-name">Riley Exploration Permian, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Energy</span><span class="pill pill-good">ROIC 22%</span><span class="pill pill-neutral">D/E 0.36</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+72%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:23.0%; width:69.0%"></div>
+      <div class="rb-tick" style="left:23.0%"></div>
+      <div class="rb-tick-label" style="left:23.0%">bear $156</div>
+      <div class="rb-tick" style="left:48.5%"></div>
+      <div class="rb-tick-label" style="left:48.5%">base $286</div>
+      <div class="rb-tick" style="left:92.0%"></div>
+      <div class="rb-tick-label" style="left:92.0%">bull $507</div>
+      <div class="rb-price" style="left:0.8%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:0.8%; color:var(--good)">$43.20</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">2</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=CRI" target="_blank" rel="noopener">CRI</a>
+          </div>
+          <div class="company-name">CARTERS INC</div>
+          <div class="pill-row"><span class="pill pill-neutral">Consumer Cyclical</span><span class="pill pill-good">ROIC 25%</span><span class="pill pill-neutral">D/E 0.61</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+59%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:28.7%; width:62.7%"></div>
+      <div class="rb-tick" style="left:28.7%"></div>
+      <div class="rb-tick-label" style="left:28.7%">bear $74</div>
+      <div class="rb-tick" style="left:53.1%"></div>
+      <div class="rb-tick-label" style="left:53.1%">base $114</div>
+      <div class="rb-tick" style="left:91.4%"></div>
+      <div class="rb-tick-label" style="left:91.4%">bull $177</div>
+      <div class="rb-price" style="left:1.8%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:1.8%; color:var(--good)">$30.19</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">3</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=AMPH" target="_blank" rel="noopener">AMPH</a>
+          </div>
+          <div class="company-name">Amphastar Pharmaceuticals, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Healthcare</span><span class="pill pill-good">ROIC 14%</span><span class="pill pill-neutral">D/E 0.79</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+51%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:22.8%; width:68.4%"></div>
+      <div class="rb-tick" style="left:22.8%"></div>
+      <div class="rb-tick-label" style="left:22.8%">bear $48</div>
+      <div class="rb-tick" style="left:57.4%"></div>
+      <div class="rb-tick-label" style="left:57.4%">base $89</div>
+      <div class="rb-tick" style="left:91.3%"></div>
+      <div class="rb-tick-label" style="left:91.3%">bull $128</div>
+      <div class="rb-price" style="left:2.0%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:2.0%; color:var(--good)">$23.54</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">4</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=BXC" target="_blank" rel="noopener">BXC</a>
+          </div>
+          <div class="company-name">BlueLinx Holdings Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Industrials</span><span class="pill pill-good">ROIC 31%</span><span class="pill pill-neutral">D/E 0.48</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+50%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:25.7%; width:65.3%"></div>
+      <div class="rb-tick" style="left:25.7%"></div>
+      <div class="rb-tick-label" style="left:25.7%">bear $158</div>
+      <div class="rb-tick" style="left:51.1%"></div>
+      <div class="rb-tick-label" style="left:51.1%">base $244</div>
+      <div class="rb-tick" style="left:91.0%"></div>
+      <div class="rb-tick-label" style="left:91.0%">bull $378</div>
+      <div class="rb-price" style="left:2.4%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:2.4%; color:var(--good)">$79.75</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">5</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=PRG" target="_blank" rel="noopener">PRG</a>
+          </div>
+          <div class="company-name">PROG Holdings, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Technology</span><span class="pill pill-good">ROIC 17%</span><span class="pill pill-neutral">D/E 0.80</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+44%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:24.7%; width:66.1%"></div>
+      <div class="rb-tick" style="left:24.7%"></div>
+      <div class="rb-tick-label" style="left:24.7%">bear $67</div>
+      <div class="rb-tick" style="left:55.6%"></div>
+      <div class="rb-tick-label" style="left:55.6%">base $109</div>
+      <div class="rb-tick" style="left:90.7%"></div>
+      <div class="rb-tick-label" style="left:90.7%">bull $156</div>
+      <div class="rb-price" style="left:2.8%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:2.8%; color:var(--good)">$37.60</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">6</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=LRN" target="_blank" rel="noopener">LRN</a>
+          </div>
+          <div class="company-name">Stride, Inc.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Consumer Defensive</span><span class="pill pill-good">ROIC 19%</span><span class="pill pill-neutral">D/E 0.26</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+38%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:15.0%; width:76.2%"></div>
+      <div class="rb-tick" style="left:15.0%"></div>
+      <div class="rb-tick-label" style="left:15.0%">bear $131</div>
+      <div class="rb-tick" style="left:43.1%"></div>
+      <div class="rb-tick-label" style="left:43.1%">base $240</div>
+      <div class="rb-tick" style="left:91.2%"></div>
+      <div class="rb-tick-label" style="left:91.2%">bull $427</div>
+      <div class="rb-price" style="left:2.1%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:2.1%; color:var(--good)">$81.45</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">7</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=LKQ" target="_blank" rel="noopener">LKQ</a>
+          </div>
+          <div class="company-name">LKQ CORP</div>
+          <div class="pill-row"><span class="pill pill-neutral">Industrials</span><span class="pill pill-good">ROIC 15%</span><span class="pill pill-neutral">D/E 0.27</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+35%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:21.0%; width:69.4%"></div>
+      <div class="rb-tick" style="left:21.0%"></div>
+      <div class="rb-tick-label" style="left:21.0%">bear $37</div>
+      <div class="rb-tick" style="left:48.0%"></div>
+      <div class="rb-tick-label" style="left:48.0%">base $56</div>
+      <div class="rb-tick" style="left:90.4%"></div>
+      <div class="rb-tick-label" style="left:90.4%">bull $87</div>
+      <div class="rb-price" style="left:3.2%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:3.2%; color:var(--good)">$23.63</div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-rank">8</div>
+        <div class="card-title">
+          <div class="symbol-row">
+            <a class="symbol" href="https://www.tradingview.com/chart/?symbol=V" target="_blank" rel="noopener">V</a>
+          </div>
+          <div class="company-name">VISA INC.</div>
+          <div class="pill-row"><span class="pill pill-neutral">Industrials</span><span class="pill pill-good">ROIC 42%</span><span class="pill pill-neutral">D/E 0.52</span></div>
+        </div>
+        <div class="card-score">
+          <span class="score-value">+32%</span>
+          <span class="score-label">margin of safety (bear)</span>
+        </div>
+      </div>
+      
+    <div class="rangebar">
+      <div class="rb-track"></div>
+      <div class="rb-range" style="left:19.3%; width:71.1%"></div>
+      <div class="rb-tick" style="left:19.3%"></div>
+      <div class="rb-tick-label" style="left:19.3%">bear $548</div>
+      <div class="rb-tick" style="left:53.7%"></div>
+      <div class="rb-tick-label" style="left:53.7%">base $930</div>
+      <div class="rb-tick" style="left:90.4%"></div>
+      <div class="rb-tick-label" style="left:90.4%">bull $1,338</div>
+      <div class="rb-price" style="left:3.3%; background:var(--good)"></div>
+      <div class="rb-price-label" style="left:3.3%; color:var(--good)">$370.08</div>
+    </div>
+    </div>
+    <div class="history-heading">Fair, not yet safe</div>
+    <p class="section-intro" style="border-left-color:var(--warning); margin-bottom:8px;">
+      Cleared the same gate, priced above the bear-case fair value but still below the base case
+      &mdash; good businesses with no cushion yet. Worth a watchlist, not a buy signal.
+    </p>
+    <div class="hist-table"><div class="hist-row buf-row hist-head"><span>Symbol</span><span>Price</span><span>Base fair value</span><span>MoS (base)</span></div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">CF</span>
+          <span class="hist-price">$135.11</span>
+          <span class="hist-price">$206.16</span>
+          <span class="hist-score">+34%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">BYD</span>
+          <span class="hist-price">$76.45</span>
+          <span class="hist-price">$109.75</span>
+          <span class="hist-score">+30%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">ASO</span>
+          <span class="hist-price">$54.22</span>
+          <span class="hist-price">$76.58</span>
+          <span class="hist-score">+29%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">CSV</span>
+          <span class="hist-price">$32.19</span>
+          <span class="hist-price">$45.12</span>
+          <span class="hist-score">+29%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">PLAB</span>
+          <span class="hist-price">$28.83</span>
+          <span class="hist-price">$42.73</span>
+          <span class="hist-score">+32%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">CTSH</span>
+          <span class="hist-price">$58.32</span>
+          <span class="hist-price">$76.07</span>
+          <span class="hist-score">+23%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">PRDO</span>
+          <span class="hist-price">$33.31</span>
+          <span class="hist-price">$44.02</span>
+          <span class="hist-score">+24%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">CLMB</span>
+          <span class="hist-price">$26.87</span>
+          <span class="hist-price">$43.03</span>
+          <span class="hist-score">+38%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">NEU</span>
+          <span class="hist-price">$880.61</span>
+          <span class="hist-price">$1,410.47</span>
+          <span class="hist-score">+38%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">ALV</span>
+          <span class="hist-price">$121.17</span>
+          <span class="hist-price">$191.80</span>
+          <span class="hist-score">+37%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">PNR</span>
+          <span class="hist-price">$57.79</span>
+          <span class="hist-price">$80.15</span>
+          <span class="hist-score">+28%</span>
+        </div>
+        <div class="hist-row buf-row">
+          <span class="hist-symbol">IBEX</span>
+          <span class="hist-price">$37.26</span>
+          <span class="hist-price">$56.37</span>
+          <span class="hist-score">+34%</span>
+        </div></div><div class="hist-empty">+ 24 more in the full weekly CSV</div>
   </div>
 
   <footer>
